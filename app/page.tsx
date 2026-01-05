@@ -9,26 +9,29 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-const popHighlight = {
+import type { Variants } from "framer-motion";
+
+const popHighlight: Variants = {
   hidden: {
     opacity: 0,
-    y: 20,
+    y: 30,
     scale: 0.95,
-    boxShadow: "0 0 0px rgba(168,85,247,0)",
-    borderColor: "rgb(38,38,38)",
+    boxShadow: "0px 0px 0px rgba(0,0,0,0)",
+    borderColor: "rgba(139,92,246,0.2)",
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    boxShadow: "0 0 40px rgba(168,85,247,0.35)",
-    borderColor: "rgb(168,85,247)",
+    boxShadow: "0px 20px 40px rgba(139,92,246,0.25)",
+    borderColor: "rgba(139,92,246,0.6)",
     transition: {
       duration: 0.6,
-      ease: [0.16, 1, 0.3, 1], // ✅ FIXED
+      ease: "easeOut", // ✅ FIX
     },
   },
 };
+
 
 
 
