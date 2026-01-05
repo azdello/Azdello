@@ -44,15 +44,12 @@ export default function HomePage() {
       <div className="absolute -top-48 -left-48 w-[420px] h-[420px] bg-purple-600/20 rounded-full blur-3xl" />
       <div className="absolute -bottom-48 -right-48 w-[420px] h-[420px] bg-blue-600/20 rounded-full blur-3xl" />
 
-      {/* NAVBAR */}
+{/* NAVBAR */}
       <header className="fixed top-0 left-0 w-full z-50 backdrop-blur bg-black/50 border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-              Azdello
-            </span>
+          <Link href="/" className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+            Azdello
           </Link>
-
           <nav className="hidden sm:flex gap-6 text-sm text-gray-300">
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
@@ -61,6 +58,7 @@ export default function HomePage() {
           </nav>
         </div>
       </header>
+
 
       {/* HERO */}
       <section className="min-h-screen flex items-center justify-center text-center px-6 pt-32">

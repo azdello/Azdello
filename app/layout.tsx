@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -12,8 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://azdello.com"),
   openGraph: {
     title: "Azdello | Web Design & SEO Agency",
-    description:
-      "Professional websites that convert visitors into customers.",
+    description: "Professional websites that convert visitors into customers.",
     url: "https://azdello.com",
     siteName: "Azdello",
     images: [
@@ -45,29 +44,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className="bg-black text-white antialiased">
-        {/* NAVBAR */}
-        <header className="fixed top-0 w-full z-50 backdrop-blur bg-black/40 border-b border-neutral-800">
-          <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-                Azdello
-              </span>
-            </Link>
-
-            <div className="flex gap-6 text-sm text-gray-300">
-              <Link href="/" className="hover:text-white">Home</Link>
-              <Link href="/about" className="hover:text-white">About</Link>
-              <Link href="/services" className="hover:text-white">Services</Link>
-              <Link href="/contact" className="hover:text-white">Contact</Link>
-            </div>
-          </nav>
-        </header>
-
-        {children}
+        <Navbar />
+        <main className="pt-24">{children}</main>
       </body>
     </html>
   );
 }
-
