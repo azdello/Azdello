@@ -12,20 +12,25 @@ const fadeUp = {
 const popHighlight = {
   hidden: {
     opacity: 0,
-    y: 30,
+    y: 20,
     scale: 0.95,
-    boxShadow: "0 0 0 rgba(168,85,247,0)",
+    boxShadow: "0 0 0px rgba(168,85,247,0)",
     borderColor: "rgb(38,38,38)",
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    boxShadow: "0 0 30px rgba(168,85,247,0.35)",
+    boxShadow: "0 0 40px rgba(168,85,247,0.35)",
     borderColor: "rgb(168,85,247)",
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1], // ✅ FIXED
+    },
   },
 };
+
+
 
 /* ---------- PAGE ---------- */
 export default function HomePage() {
