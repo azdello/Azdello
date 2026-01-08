@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -10,8 +10,6 @@ const fadeUp = {
 };
 
 export default function ContactPage() {
-  const [success, setSuccess] = useState(false);
-
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
@@ -23,7 +21,7 @@ export default function ContactPage() {
     const phone = formData.get("phone") as string;
     const email = formData.get("email") as string;
 
-    // 📞 Phone validation
+    // 📞 Phone validation: must start with 04 and be 10 digits
     const phoneRegex = /^04\d{8}$/;
     if (!phoneRegex.test(phone)) {
       alert("Phone number must start with 04 and be 10 digits (e.g. 0412345678)");
@@ -36,7 +34,7 @@ export default function ContactPage() {
       return;
     }
 
-    const res = await fetch("/api/contact", {
+    await fetch("/api/contact", {
       method: "POST",
       body: JSON.stringify({
         name: formData.get("name"),
@@ -48,13 +46,8 @@ export default function ContactPage() {
       }),
     });
 
-    if (res.ok) {
-      form.reset();
-      setSuccess(true);
-      setTimeout(() => setSuccess(false), 4000);
-    } else {
-      alert("Something went wrong. Please try again.");
-    }
+    form.reset();
+    alert("Thanks! Your enquiry has been sent.");
   };
 
   return (
@@ -82,9 +75,9 @@ export default function ContactPage() {
           </Link>
 
           <nav className="flex gap-8 text-sm text-gray-300">
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/services">Services</Link>
+            <Link href="/" className="hover:text-white">Home</Link>
+            <Link href="/about" className="hover:text-white">About</Link>
+            <Link href="/services" className="hover:text-white">Services</Link>
             <Link href="/contact" className="text-white">Contact</Link>
           </nav>
         </div>
@@ -155,37 +148,80 @@ export default function ContactPage() {
             whileHover={{ scale: 1.01 }}
             className="bg-neutral-950 border border-neutral-800 rounded-3xl p-10 space-y-6"
           >
-            <input name="name" required placeholder="Full Name"
-              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
+            <div>
+              <label className="block text-sm mb-2">Full Name</label>
+              <input
+                name="name"
+                required
+                type="text"
+                placeholder="John Smith"
+                className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500"
+              />
+            </div>
 
-            <input name="email" type="email" required placeholder="Email Address"
-              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
+            <div>
+              <label className="block text-sm mb-2">Email</label>
+              <input
+                name="email"
+                required
+                type="email"
+                placeholder="john@email.com"
+                className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500"
+              />
+            </div>
 
-            <input name="phone" required placeholder="04xxxxxxxx"
-              pattern="04\d{8}"
-              title="Phone must start with 04 and be 10 digits"
-              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
+            <div>
+              <label className="block text-sm mb-2">Contact Number</label>
+              <input
+                name="phone"
+                required
+                type="text"
+                placeholder="04xxxxxxxx"
+                pattern="04\d{8}"
+                title="Phone number must start with 04 and be 10 digits"
+                className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500"
+              />
+            </div>
 
-            <select name="businessType" required
-              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm">
-              <option value="">Business Type</option>
-              <option>Startup</option>
-              <option>Local Business</option>
-              <option>E-commerce</option>
-              <option>Agency</option>
-            </select>
+            <div>
+              <label className="block text-sm mb-2">Business Type</label>
+              <select
+                name="businessType"
+                required
+                className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500"
+              >
+                <option value="">Select business type</option>
+                <option>Startup</option>
+                <option>Local Business</option>
+                <option>E-commerce</option>
+                <option>Agency</option>
+              </select>
+            </div>
 
-            <select name="budget" required
-              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm">
-              <option>Under $1,000</option>
-              <option>$1,000 – $3,000</option>
-              <option>$3,000 – $5,000</option>
-              <option>$5,000+</option>
-            </select>
+            <div>
+              <label className="block text-sm mb-2">Estimated Budget</label>
+              <select
+                name="budget"
+                required
+                className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500"
+              >
+                <option>Under $1,000</option>
+                <option>$1,000 – $3,000</option>
+                <option>$3,000 – $5,000</option>
+                <option>$5,000+</option>
+              </select>
+            </div>
 
-            <textarea name="message" required rows={4}
-              placeholder="Tell us about your project goals..."
-              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
+            <div>
+              <label className="block text-sm mb-2">Project Details</label>
+              <textarea
+                name="message"
+                required
+                rows={4}
+                placeholder="Tell us about your project goals..."
+                className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500"
+              />
+            </div>
 
             <button
               type="submit"
@@ -193,24 +229,9 @@ export default function ContactPage() {
             >
               Send Enquiry
             </button>
-
-            {/* ✅ SUCCESS ANIMATION */}
-            <AnimatePresence>
-              {success && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="text-green-400 text-center mt-4"
-                >
-                  ✅ Thanks! We’ll contact you shortly.
-                </motion.div>
-              )}
-            </AnimatePresence>
           </motion.form>
         </motion.div>
       </section>
     </div>
   );
 }
-
