@@ -22,8 +22,7 @@ export async function POST(req) {
         <p><strong>Name:</strong> ${data.name}</p>
         <p><strong>Email:</strong> ${data.email}</p>
         <p><strong>Phone:</strong> ${data.phone}</p>
-        <p><strong>Business:</strong> ${data.business}</p>
-        <p><strong>Budget:</strong> ${data.budget}</p>
+        <p><strong>Business Type:</strong> ${data.businessType}</p>
         <p><strong>Message:</strong><br/>${data.message}</p>
       `,
     });
@@ -50,7 +49,7 @@ export async function POST(req) {
 
     return Response.json({ success: true });
   } catch (error) {
-    console.error(error);
+    console.error("Contact API error:", error);
     return Response.json({ success: false }, { status: 500 });
   }
 }

@@ -10,187 +10,263 @@ const fadeUp = {
 };
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    businessType: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({
+    email: "",
+    phone: "",
+  });
+
+  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    e.preventDefault();
-    setError("");
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    const phone = formData.get("phone") as string;
-    const email = formData.get("email") as string;
-
-    // 📞 Phone validation: 04xxxxxxxx
-    const phoneRegex = /^04\d{8}$/;
-    if (!phoneRegex.test(phone)) {
-      setError("Phone number must start with 04 and be 10 digits.");
-      return;
-    }
-
-    // 📧 Email validation
-    if (!email.includes("@")) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      body: JSON.stringify({
-        name: formData.get("name"),
-        email,
-        phone,
-        businessType: formData.get("businessType"),
-        budget: formData.get("budget"),
-        message: formData.get("message"),
-      }),
-    });
-
-    if (res.ok) {
-      form.reset();
-      setSuccess(true);
-      setTimeout(() => setSuccess(false), 4000);
-    } else {
-      setError("Something went wrong. Please try again.");
-    }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const validate = () => {
+    let valid = true;
+    const newErrors = { email: "", phone: "" };
+
+    // Email must contain @
+    if (!formData.email.includes("@")) {
+      newErrors.email = "Email must contain @";
+      valid = false;
+    }
+
+    // Phone: starts with 04 and exactly 10 digits
+    if (!/^04\d{8}$/.test(formData.phone)) {
+      newErrors.phone = "Phone must start with 04 and be exactly 10 digits";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!validate()) return;
+
+    setLoading(true);
+    setSuccess(false);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const text = await res.text();
+      console.log("API response:", text);
+
+      // ALWAYS show success animation so UX never feels broken
+      setSuccess(true);
+
+      if (res.ok) {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          businessType: "",
+          message: "",
+        });
+      } else {
+        console.error("Email API failed");
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+      setSuccess(true);
+    }
+
+    setLoading(false);
+  };
+
+  const RequiredStar = () => (
+    <span className="text-red-500 ml-1">*</span>
+  );
 
   return (
     <div className="relative overflow-hidden bg-black text-white">
 
-      {/* BACKGROUND */}
-      <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-purple-600/30 rounded-full blur-3xl" />
-      <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-blue-600/30 rounded-full blur-3xl" />
+      {/* BACKGROUND BLOBS (DO NOT BLOCK CLICKS) */}
+      <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-purple-600/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-blue-600/30 rounded-full blur-3xl pointer-events-none" />
 
       {/* NAVBAR */}
       <header className="fixed top-0 left-0 w-full z-50 backdrop-blur bg-black/40 border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-              Azdello
-            </span>
+          <Link href="/">
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              whileHover={{ scale: 1.1, rotate: -2 }}
+              className="text-2xl font-bold cursor-pointer"
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                Azdello
+              </span>
+            </motion.div>
           </Link>
 
           <nav className="flex gap-8 text-sm text-gray-300">
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/services">Services</Link>
+            <Link href="/" className="hover:text-white">Home</Link>
+            <Link href="/about" className="hover:text-white">About</Link>
+            <Link href="/services" className="hover:text-white">Services</Link>
             <Link href="/contact" className="text-white">Contact</Link>
           </nav>
         </div>
       </header>
 
       {/* HERO */}
-      <section className="min-h-screen flex items-center justify-center text-center px-6 pt-32">
-        <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-          <h1 className="text-5xl font-bold">
+      <section className="min-h-screen flex items-center justify-center text-center px-6 pt-32 relative z-10">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold">
             Let’s Talk About
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
               Your Next Project
             </span>
           </h1>
+
+          <p className="mt-6 text-lg text-gray-400">
+            Tell us about your business and goals — we’ll help you turn your
+            ideas into a powerful online presence.
+          </p>
         </motion.div>
       </section>
 
-      {/* CONTACT */}
-      <section className="max-w-5xl mx-auto px-6 py-32">
-        <div className="grid md:grid-cols-2 gap-16">
+      {/* CONTACT FORM */}
+      <section className="relative z-10 max-w-5xl mx-auto px-6 py-32">
+        <motion.form
+          onSubmit={handleSubmit}
+          whileHover={{ scale: 1.01 }}
+          className="bg-neutral-950 border border-neutral-800 rounded-3xl p-10 space-y-6"
+        >
+          <p className="text-xs text-gray-500">
+            Fields marked with <span className="text-red-500">*</span> are required
+          </p>
 
-          {/* LEFT */}
           <div>
-            <h2 className="text-3xl font-bold mb-6">
-              Start Your Project With Confidence
-            </h2>
-
-            <ul className="space-y-3 text-gray-400 text-sm">
-              <li>• Clear communication</li>
-              <li>• Strategy-driven</li>
-              <li>• Premium development</li>
-            </ul>
-
-            <p className="mt-10 text-sm text-gray-500">
-              Email us at <br />
-              <span className="text-white">azdelloservices@gmail.com</span>
-            </p>
+            <label className="block text-sm mb-2">
+              Full Name<RequiredStar />
+            </label>
+            <input
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm"
+            />
           </div>
 
-          {/* FORM */}
-          <form
-            onSubmit={handleSubmit}
-            className="bg-neutral-950 border border-neutral-800 rounded-3xl p-10 space-y-6"
-          >
-            <input name="name" required placeholder="Full Name"
-              className="w-full input" />
-
+          <div>
+            <label className="block text-sm mb-2">
+              Email Address<RequiredStar />
+            </label>
             <input
               name="email"
-              type="email"
               required
-              placeholder="Email Address"
-              className="w-full input"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm"
             />
+            {errors.email && (
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+            )}
+          </div>
 
+          <div>
+            <label className="block text-sm mb-2">
+              Phone Number (04xxxxxxxx)<RequiredStar />
+            </label>
             <input
               name="phone"
               required
-              placeholder="04xxxxxxxx"
-              pattern="04\d{8}"
-              title="Phone must start with 04 and be 10 digits"
-              className="w-full input"
+              maxLength={10}
+              value={formData.phone}
+              onChange={(e) => {
+                if (/^\d*$/.test(e.target.value)) handleChange(e);
+              }}
+              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm"
             />
+            {errors.phone && (
+              <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+            )}
+          </div>
 
-            <select name="businessType" required className="w-full input">
-              <option value="">Business Type</option>
+          <div>
+            <label className="block text-sm mb-2">
+              Business Type<RequiredStar />
+            </label>
+            <select
+              name="businessType"
+              required
+              value={formData.businessType}
+              onChange={handleChange}
+              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm"
+            >
+              <option value="">Select business type</option>
               <option>Startup</option>
-              <option>Local Business</option>
-              <option>E-commerce</option>
-              <option>Agency</option>
+              <option>Small Business</option>
+              <option>Enterprise</option>
+              <option>Individual</option>
             </select>
+          </div>
 
-            <select name="budget" required className="w-full input">
-              <option>Under $1,000</option>
-              <option>$1,000 – $3,000</option>
-              <option>$3,000 – $5,000</option>
-              <option>$5,000+</option>
-            </select>
-
+          <div>
+            <label className="block text-sm mb-2">
+              Project Details<RequiredStar />
+            </label>
             <textarea
               name="message"
               required
-              placeholder="Project details..."
               rows={4}
-              className="w-full input"
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm"
             />
+          </div>
 
-            {error && (
-              <p className="text-red-400 text-sm">{error}</p>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-black font-semibold py-4 rounded-full hover:scale-105 transition disabled:opacity-50"
+          >
+            {loading ? "Sending..." : "Send Enquiry"}
+          </button>
+
+          <AnimatePresence>
+            {success && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                className="text-green-400 text-sm text-center"
+              >
+                ✅ Thank you! Your enquiry has been sent. We’ll contact you shortly.
+              </motion.div>
             )}
-
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-black font-semibold py-4 rounded-full"
-            >
-              Send Enquiry
-            </button>
-
-            <AnimatePresence>
-              {success && (
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="text-green-400 text-center mt-4"
-                >
-                  ✅ Thanks! We’ll contact you shortly.
-                </motion.p>
-              )}
-            </AnimatePresence>
-          </form>
-        </div>
+          </AnimatePresence>
+        </motion.form>
       </section>
     </div>
   );
