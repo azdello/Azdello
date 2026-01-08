@@ -105,9 +105,9 @@ export default function ContactPage() {
           </Link>
 
           <nav className="flex gap-8 text-sm text-gray-300">
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/services">Services</Link>
+            <Link href="/" className="hover:text-white">Home</Link>
+            <Link href="/about" className="hover:text-white">About</Link>
+            <Link href="/services" className="hover:text-white">Services</Link>
             <Link href="/contact" className="text-white">Contact</Link>
           </nav>
         </div>
@@ -115,114 +115,189 @@ export default function ContactPage() {
 
       {/* HERO */}
       <section className="min-h-screen flex items-center justify-center text-center px-6 pt-32 relative z-10">
-        <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-          <h1 className="text-5xl md:text-6xl font-bold">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight">
             Let’s Talk About
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
               Your Next Project
             </span>
           </h1>
+
           <p className="mt-6 text-lg text-gray-400">
-            Tell us about your business and goals — we’ll help you bring it to life.
+            Tell us about your goals — we’ll help you turn ideas into results.
           </p>
         </motion.div>
       </section>
 
-      {/* CONTACT */}
-      <section className="relative z-10 max-w-5xl mx-auto px-6 py-32">
-        <motion.div className="grid md:grid-cols-2 gap-16 items-start">
+      {/* CONTACT SECTION */}
+      <section className="relative z-10 max-w-6xl mx-auto px-6 py-32">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.7 }}
+          className="grid md:grid-cols-2 gap-20 items-start"
+        >
 
-          {/* LEFT */}
+          {/* LEFT INFO – EXPANDED */}
           <div>
-            <h2 className="text-3xl font-bold mb-6">Start Your Project With Confidence</h2>
-            <p className="text-gray-400 mb-8">
-              Strategy-led design and development built for results.
+            <h2 className="text-3xl font-bold mb-6">
+              Start Your Project With Confidence
+            </h2>
+
+            <p className="text-gray-400 mb-6 leading-relaxed">
+              We help businesses design, build, and scale powerful digital
+              experiences. Whether you're launching something new or upgrading
+              what you already have, we guide you at every step.
+            </p>
+
+            <div className="space-y-6 text-sm text-gray-400">
+              <div>
+                <h4 className="text-white font-semibold mb-1">What happens next?</h4>
+                <ul className="space-y-1">
+                  <li>• We review your enquiry carefully</li>
+                  <li>• One of our specialists contacts you</li>
+                  <li>• We discuss goals, scope & timeline</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-white font-semibold mb-1">Response time</h4>
+                <p>We typically respond within 24 hours (Mon–Fri).</p>
+              </div>
+
+              <div>
+                <h4 className="text-white font-semibold mb-1">Why Azdello?</h4>
+                <ul className="space-y-1">
+                  <li>• Strategy-first approach</li>
+                  <li>• Clean, premium design</li>
+                  <li>• Performance & scalability focused</li>
+                  <li>• Transparent communication</li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="mt-10 text-sm text-gray-500">
+              Prefer email? <br />
+              <span className="text-white font-medium">
+                azdelloservices@gmail.com
+              </span>
             </p>
           </div>
 
-          {/* RIGHT */}
-          <AnimatePresence mode="wait">
-            {!success ? (
-              <motion.form
-                key="form"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                onSubmit={handleSubmit}
-                className="bg-neutral-950 border border-neutral-800 rounded-3xl p-10 space-y-6"
-              >
-                <p className="text-xs text-gray-500">
-                  Fields marked with <span className="text-red-500">*</span> are required
-                </p>
-
-                <input name="name" required placeholder="Full Name *"
-                  value={formData.name} onChange={handleChange}
-                  className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
-
-                <input name="email" required placeholder="Email Address *"
-                  value={formData.email} onChange={handleChange}
-                  className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
-                {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
-
-                <input name="phone" required maxLength={10} placeholder="Phone (04xxxxxxxx) *"
-                  value={formData.phone}
-                  onChange={(e) => /^\d*$/.test(e.target.value) && handleChange(e)}
-                  className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
-                {errors.phone && <p className="text-red-500 text-xs">{errors.phone}</p>}
-
-                <select name="businessType" required value={formData.businessType}
-                  onChange={handleChange}
-                  className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm">
-                  <option value="">Business Type *</option>
-                  <option>Startup</option>
-                  <option>Small Business</option>
-                  <option>Enterprise</option>
-                  <option>Individual</option>
-                </select>
-
-                <select name="budget" required value={formData.budget}
-                  onChange={handleChange}
-                  className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm">
-                  <option value="">Estimated Budget *</option>
-                  <option>$1,000 – $3,000</option>
-                  <option>$3,000 – $5,000</option>
-                  <option>$5,000 – $10,000</option>
-                  <option>$10,000+</option>
-                </select>
-
-                <textarea name="message" required rows={4} placeholder="Project details *"
-                  value={formData.message} onChange={handleChange}
-                  className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
-
-                <button disabled={loading}
-                  className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-black font-semibold py-4 rounded-full">
-                  {loading ? "Sending..." : "Send Enquiry"}
-                </button>
-              </motion.form>
-            ) : (
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                className="bg-neutral-950 border border-neutral-800 rounded-3xl p-16 text-center"
-              >
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                  className="text-6xl mb-6"
+          {/* RIGHT FORM */}
+          <div>
+            <AnimatePresence mode="wait">
+              {!success ? (
+                <motion.form
+                  key="form"
+                  onSubmit={handleSubmit}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="bg-neutral-950 border border-neutral-800 rounded-3xl p-10 space-y-6"
                 >
-                  🚀
+                  <p className="text-xs text-gray-500">
+                    Fields marked with <span className="text-red-500">*</span> are required
+                  </p>
+
+                  <div>
+                    <label className="block text-sm mb-2">
+                      Full Name<RequiredStar />
+                    </label>
+                    <input name="name" required value={formData.name} onChange={handleChange}
+                      className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm mb-2">
+                      Email<RequiredStar />
+                    </label>
+                    <input name="email" required value={formData.email} onChange={handleChange}
+                      className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
+                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm mb-2">
+                      Phone (04xxxxxxxx)<RequiredStar />
+                    </label>
+                    <input
+                      name="phone"
+                      required
+                      maxLength={10}
+                      value={formData.phone}
+                      onChange={(e) => /^\d*$/.test(e.target.value) && handleChange(e)}
+                      className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm"
+                    />
+                    {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm mb-2">
+                      Business Type<RequiredStar />
+                    </label>
+                    <select name="businessType" required value={formData.businessType} onChange={handleChange}
+                      className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm">
+                      <option value="">Select</option>
+                      <option>Startup</option>
+                      <option>Small Business</option>
+                      <option>Enterprise</option>
+                      <option>Individual</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm mb-2">
+                      Estimated Budget<RequiredStar />
+                    </label>
+                    <select name="budget" required value={formData.budget} onChange={handleChange}
+                      className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm">
+                      <option value="">Select</option>
+                      <option>Under $1,000</option>
+                      <option>$1,000 – $3,000</option>
+                      <option>$3,000 – $5,000</option>
+                      <option>$5,000 – $10,000</option>
+                      <option>$10,000+</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm mb-2">
+                      Project Details<RequiredStar />
+                    </label>
+                    <textarea name="message" required rows={4} value={formData.message} onChange={handleChange}
+                      className="w-full bg-black border border-neutral-700 rounded-xl px-4 py-3 text-sm" />
+                  </div>
+
+                  <button type="submit" disabled={loading}
+                    className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-black font-semibold py-4 rounded-full hover:scale-105 transition disabled:opacity-50">
+                    {loading ? "Sending..." : "Send Enquiry"}
+                  </button>
+                </motion.form>
+              ) : (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-neutral-950 border border-neutral-800 rounded-3xl p-16 text-center"
+                >
+                  <h3 className="text-2xl font-bold mb-4">🎉 Enquiry Received</h3>
+                  <p className="text-gray-400">
+                    Thank you for reaching out.  
+                    Our team will contact you shortly.
+                  </p>
                 </motion.div>
-                <h3 className="text-2xl font-bold mb-4">
-                  We’ve received your enquiry!
-                </h3>
-                <p className="text-gray-400">
-                  Our team will contact you shortly.
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              )}
+            </AnimatePresence>
+          </div>
+
         </motion.div>
       </section>
     </div>
