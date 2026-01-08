@@ -1,7 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
-import Footer from "./components/Footer";
+import Footer from "@/components/Footer";
+import CookieBanner from "@/components/CookieBanner";
 
 export const metadata: Metadata = {
   title: {
@@ -47,16 +48,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-black text-white antialiased">
-        {/* NAVBAR */}
         <Navbar />
-
-        {/* PAGE CONTENT */}
-        <main className="pt-24 min-h-screen">
-          {children}
-        </main>
-
-        {/* FOOTER */}
+        <main className="pt-24">{children}</main>
         <Footer />
+
+        {/* ✅ Cookie banner added — nothing else touched */}
+        <CookieBanner />
       </body>
     </html>
   );
