@@ -32,7 +32,7 @@ export async function POST(req) {
 
     /* 2️⃣ AUTO-REPLY TO CUSTOMER */
     await transporter.sendMail({
-      from: "Azdello <azdelloservices@gmail.com>",
+      from: `"Azdello Website" <azdelloservices@gmail.com>`,
       to: data.email,
       subject: "We’ve received your enquiry – Azdello",
       html: `
