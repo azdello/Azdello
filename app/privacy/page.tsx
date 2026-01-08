@@ -1,59 +1,80 @@
+export const metadata = {
+  title: "Privacy Policy",
+};
+
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-black text-white px-6 py-32">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <h1 className="text-4xl font-bold">Privacy Policy</h1>
+    <section className="max-w-5xl mx-auto px-6 py-32">
+      <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
 
-        <p className="text-gray-400">
-          At <strong>Azdello</strong>, we respect your privacy and are committed
-          to protecting your personal information.
-        </p>
+      <p className="text-gray-400 mb-6">
+        Azdello is committed to protecting your privacy. This Privacy Policy
+        explains how we collect, use, store, and protect your personal
+        information in accordance with Australian privacy laws.
+      </p>
 
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">Information We Collect</h2>
-          <p className="text-gray-400">
-            When you submit a contact form on our website, we may collect
-            personal information such as your name, email address, phone number,
-            business details, and project information.
-          </p>
-        </section>
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        1. Information We Collect
+      </h2>
+      <p className="text-gray-400 mb-6">
+        We may collect personal information including your name, email address,
+        phone number, business details, and any information submitted through
+        our contact forms.
+      </p>
 
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">How We Use Your Information</h2>
-          <ul className="list-disc list-inside text-gray-400 space-y-2">
-            <li>To respond to enquiries and provide our services</li>
-            <li>To communicate with you about your project</li>
-            <li>To improve our website and services</li>
-          </ul>
-        </section>
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        2. How We Use Your Information
+      </h2>
+      <p className="text-gray-400 mb-6">
+        Your information is used solely for responding to enquiries, providing
+        services, improving our offerings, and communicating with you regarding
+        your request.
+      </p>
 
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">Data Protection</h2>
-          <p className="text-gray-400">
-            We take reasonable steps to protect your personal information from
-            unauthorised access, misuse, or disclosure.
-          </p>
-        </section>
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        3. Storage & Security
+      </h2>
+      <p className="text-gray-400 mb-6">
+        We take reasonable steps to protect your personal information from
+        misuse, loss, unauthorised access, modification, or disclosure.
+      </p>
 
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">Third-Party Services</h2>
-          <p className="text-gray-400">
-            We may use trusted third-party services (such as email providers)
-            solely to operate our business. Your data is never sold.
-          </p>
-        </section>
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        4. Sharing of Information
+      </h2>
+      <p className="text-gray-400 mb-6">
+        We do not sell or rent your personal information. Information may only
+        be shared where required by law or necessary to deliver services.
+      </p>
 
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">Contact</h2>
-          <p className="text-gray-400">
-            If you have any questions about this Privacy Policy, contact us at:
-            <br />
-            <span className="text-white font-medium">
-              azdelloservices@gmail.com
-            </span>
-          </p>
-        </section>
-      </div>
-    </div>
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        5. Cookies & Analytics
+      </h2>
+      <p className="text-gray-400 mb-6">
+        Our website may use cookies and analytics tools to improve user
+        experience and website performance. These tools do not identify you
+        personally.
+      </p>
+
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        6. Your Rights
+      </h2>
+      <p className="text-gray-400 mb-6">
+        You may request access to, correction of, or deletion of your personal
+        information by contacting us.
+      </p>
+
+      <h2 className="text-2xl font-semibold mt-10 mb-4">
+        7. Contact
+      </h2>
+      <p className="text-gray-400">
+        If you have any questions or concerns about this Privacy Policy, contact
+        us at
+        <br />
+        <span className="text-white font-medium">
+          azdelloservices@gmail.com
+        </span>
+      </p>
+    </section>
   );
 }
