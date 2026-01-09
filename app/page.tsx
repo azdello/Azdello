@@ -227,29 +227,23 @@ export default function HomePage() {
 
   <p className="text-gray-400 text-center max-w-3xl mx-auto mb-16">
     A curated selection of well-designed Melbourne business websites that
-    inspire our approach to clean design, usability, and branding.
+    inspire our approach to clean design, usability, and conversion.
   </p>
 
   <div className="grid md:grid-cols-3 gap-10">
     {[
       {
-        name: "99designs",
-        url: "https://99designs.com",
-        type: "Design Platform · Melbourne",
+        url: "https://www.goodwillfencing.com.au/",
       },
       {
-        name: "Flower Drum",
         url: "https://flowerdrum.melbourne",
-        type: "Hospitality · Melbourne",
       },
       {
-        name: "BKK Architects",
-        url: "https://b-k-k.com.au",
-        type: "Architecture · Melbourne",
+        url: "https://emperorsign.com/",
       },
-    ].map((site) => (
+    ].map((site, i) => (
       <motion.div
-        key={site.name}
+        key={i}
         variants={popHighlight}
         initial="hidden"
         whileInView="visible"
@@ -260,20 +254,17 @@ export default function HomePage() {
         <div className="relative h-56 bg-black">
           <iframe
             src={site.url}
-            title={site.name}
+            title="Web design inspiration preview"
             className="absolute inset-0 w-full h-full scale-[0.8] origin-top pointer-events-none"
           />
         </div>
 
-        {/* Info */}
-        <div className="p-6 flex flex-col gap-2">
-          <h3 className="text-lg font-semibold">{site.name}</h3>
-          <p className="text-sm text-gray-400">{site.type}</p>
-
+        {/* Action */}
+        <div className="p-6 text-center">
           <Link
             href={site.url}
             target="_blank"
-            className="mt-4 inline-block text-sm font-semibold text-purple-400 hover:text-purple-300"
+            className="inline-block text-sm font-semibold text-purple-400 hover:text-purple-300"
           >
             Visit Website →
           </Link>
@@ -287,6 +278,7 @@ export default function HomePage() {
     developed by Azdello.
   </p>
 </section>
+
 
 
       {/* CTA */}
