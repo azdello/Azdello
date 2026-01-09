@@ -226,20 +226,35 @@ export default function HomePage() {
     Web Design Inspiration
   </motion.h2>
 
+  <p className="text-gray-400 text-center max-w-3xl mx-auto mb-16">
+  </p>
+
   <div className="grid md:grid-cols-3 gap-10">
     {[
       "https://www.goodwillfencing.com.au/",
       "https://flowerdrum.melbourne",
       "https://emperorsign.com/",
     ].map((url, i) => (
-      <motion.div
+      <motion.a
         key={i}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
         variants={popHighlight}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         whileHover={{ scale: 1.03 }}
-        className="group bg-neutral-950 border border-neutral-800 rounded-3xl overflow-hidden"
+        className="
+          group
+          block
+          bg-neutral-950
+          border border-neutral-800
+          rounded-3xl
+          overflow-hidden
+          active:scale-95
+          transition
+        "
       >
         {/* Preview */}
         <div className="relative h-64 bg-black overflow-hidden">
@@ -252,29 +267,36 @@ export default function HomePage() {
               scale-[0.75]
               origin-top
               pointer-events-none
-              transition-transform duration-500
-              group-hover:scale-[0.82]
             "
           />
 
-          {/* Overlay */}
+          {/* Mobile Tap Overlay */}
           <div className="
+            md:hidden
+            absolute inset-0
+            flex items-center justify-center
+            bg-black/40
+          ">
+            <span className="bg-white text-black px-6 py-3 rounded-full text-sm font-semibold">
+              Tap to View →
+            </span>
+          </div>
+
+          {/* Desktop Hover Overlay */}
+          <div className="
+            hidden md:flex
             absolute inset-0
             bg-gradient-to-t from-black/80 via-black/20 to-transparent
             opacity-0 group-hover:opacity-100
             transition-opacity duration-300
-            flex items-end justify-center pb-6
+            items-end justify-center pb-6
           ">
-            <Link
-              href={url}
-              target="_blank"
-              className="bg-white text-black px-6 py-3 rounded-full text-sm font-semibold"
-            >
+            <span className="bg-white text-black px-6 py-3 rounded-full text-sm font-semibold">
               View Live Website →
-            </Link>
+            </span>
           </div>
         </div>
-      </motion.div>
+      </motion.a>
     ))}
   </div>
 </section>
