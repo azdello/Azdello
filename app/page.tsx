@@ -213,6 +213,81 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      {/* WEB DESIGN INSPIRATION */}
+<section className="max-w-7xl mx-auto px-6 py-32">
+  <motion.h2
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    className="text-3xl font-bold mb-6 text-center"
+  >
+    Web Design Inspiration
+  </motion.h2>
+
+  <p className="text-gray-400 text-center max-w-3xl mx-auto mb-16">
+    A curated selection of well-designed Melbourne business websites that
+    inspire our approach to clean design, usability, and branding.
+  </p>
+
+  <div className="grid md:grid-cols-3 gap-10">
+    {[
+      {
+        name: "99designs",
+        url: "https://99designs.com",
+        type: "Design Platform · Melbourne",
+      },
+      {
+        name: "Flower Drum",
+        url: "https://flowerdrum.melbourne",
+        type: "Hospitality · Melbourne",
+      },
+      {
+        name: "BKK Architects",
+        url: "https://b-k-k.com.au",
+        type: "Architecture · Melbourne",
+      },
+    ].map((site) => (
+      <motion.div
+        key={site.name}
+        variants={popHighlight}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="bg-neutral-950 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col"
+      >
+        {/* Preview */}
+        <div className="relative h-56 bg-black">
+          <iframe
+            src={site.url}
+            title={site.name}
+            className="absolute inset-0 w-full h-full scale-[0.8] origin-top pointer-events-none"
+          />
+        </div>
+
+        {/* Info */}
+        <div className="p-6 flex flex-col gap-2">
+          <h3 className="text-lg font-semibold">{site.name}</h3>
+          <p className="text-sm text-gray-400">{site.type}</p>
+
+          <Link
+            href={site.url}
+            target="_blank"
+            className="mt-4 inline-block text-sm font-semibold text-purple-400 hover:text-purple-300"
+          >
+            Visit Website →
+          </Link>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+
+  <p className="text-xs text-gray-500 text-center mt-10">
+    These websites are shown for design inspiration only and are not projects
+    developed by Azdello.
+  </p>
+</section>
+
 
       {/* CTA */}
       <section className="py-32 text-center px-6">
