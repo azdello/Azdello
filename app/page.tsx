@@ -213,6 +213,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
       {/* WEB DESIGN INSPIRATION */}
 <section className="max-w-7xl mx-auto px-6 py-32">
   <motion.h2
@@ -225,60 +226,58 @@ export default function HomePage() {
     Web Design Inspiration
   </motion.h2>
 
-  <p className="text-gray-400 text-center max-w-3xl mx-auto mb-16">
-    A curated selection of well-designed Melbourne business websites that
-    inspire our approach to clean design, usability, and conversion.
-  </p>
-
   <div className="grid md:grid-cols-3 gap-10">
     {[
-      {
-        url: "https://www.goodwillfencing.com.au/",
-      },
-      {
-        url: "https://flowerdrum.melbourne",
-      },
-      {
-        url: "https://emperorsign.com/",
-      },
-    ].map((site, i) => (
+      "https://www.goodwillfencing.com.au/",
+      "https://flowerdrum.melbourne",
+      "https://emperorsign.com/",
+    ].map((url, i) => (
       <motion.div
         key={i}
         variants={popHighlight}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="bg-neutral-950 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col"
+        whileHover={{ scale: 1.03 }}
+        className="group bg-neutral-950 border border-neutral-800 rounded-3xl overflow-hidden"
       >
         {/* Preview */}
-        <div className="relative h-56 bg-black">
+        <div className="relative h-64 bg-black overflow-hidden">
           <iframe
-            src={site.url}
+            src={url}
             title="Web design inspiration preview"
-            className="absolute inset-0 w-full h-full scale-[0.8] origin-top pointer-events-none"
+            className="
+              absolute inset-0
+              w-full h-full
+              scale-[0.75]
+              origin-top
+              pointer-events-none
+              transition-transform duration-500
+              group-hover:scale-[0.82]
+            "
           />
-        </div>
 
-        {/* Action */}
-        <div className="p-6 text-center">
-          <Link
-            href={site.url}
-            target="_blank"
-            className="inline-block text-sm font-semibold text-purple-400 hover:text-purple-300"
-          >
-            Visit Website →
-          </Link>
+          {/* Overlay */}
+          <div className="
+            absolute inset-0
+            bg-gradient-to-t from-black/80 via-black/20 to-transparent
+            opacity-0 group-hover:opacity-100
+            transition-opacity duration-300
+            flex items-end justify-center pb-6
+          ">
+            <Link
+              href={url}
+              target="_blank"
+              className="bg-white text-black px-6 py-3 rounded-full text-sm font-semibold"
+            >
+              View Live Website →
+            </Link>
+          </div>
         </div>
       </motion.div>
     ))}
   </div>
-
-  <p className="text-xs text-gray-500 text-center mt-10">
-    These websites are shown for design inspiration only and are not projects
-    developed by Azdello.
-  </p>
 </section>
-
 
 
       {/* CTA */}
