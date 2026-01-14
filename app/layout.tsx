@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://azdello.com"),
 
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon-2026.png",
+    apple: "/favicon-2026.png",
   },
 
   openGraph: {
