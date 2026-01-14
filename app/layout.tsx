@@ -12,6 +12,12 @@ export const metadata: Metadata = {
   description:
     "Azdello is a modern web design, development and SEO agency helping businesses grow online with high-converting websites.",
   metadataBase: new URL("https://azdello.com"),
+
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
+
   openGraph: {
     title: "Azdello | Web Design & SEO Agency",
     description: "Professional websites that convert visitors into customers.",
@@ -51,8 +57,6 @@ export default function RootLayout({
         <Navbar />
         <main className="pt-24">{children}</main>
         <Footer />
-
-        {/* ✅ Cookie banner added — nothing else touched */}
         <CookieBanner />
       </body>
     </html>
