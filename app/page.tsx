@@ -135,10 +135,10 @@ export default function HomePage() {
 
   <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
     {[
-      ["Website Design", "Modern, user-focused designs that reflect your brand."],
-      ["Web Development", "Fast, scalable and secure websites built for growth."],
-      ["SEO Optimisation", "Rank higher and attract customers organically."],
-      ["Brand Consulting", "Clear messaging and strong digital identity."],
+      ["Web Development", "Fast, secure, and scalable websites built to convert visitors into customers."],
+      ["App Development", "Custom mobile and web applications designed for performance and usability."],
+      ["SEO Optimisation", "Improve rankings, visibility, and organic traffic with proven SEO strategies."],
+      ["AI Call Services", "AI-powered call handling to capture leads, answer queries, and never miss a customer."],
     ].map(([title, desc]) => (
       <motion.div
         key={title}

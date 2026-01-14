@@ -81,50 +81,50 @@ export default function ServicesPage() {
 
         <div className="grid md:grid-cols-2 gap-12">
           {[
-            {
-              title: "Website Design",
-              desc:
-                "Modern, user-focused designs that align with your brand and guide visitors toward action.",
-              points: [
-                "UI/UX focused layouts",
-                "Mobile-first design",
-                "Brand-aligned visuals",
-                "Conversion optimisation",
-              ],
-            },
-            {
-              title: "Website Development",
-              desc:
-                "Fast, secure, and scalable websites built with modern technologies for long-term growth.",
-              points: [
-                "Next.js & modern stacks",
-                "Lightning-fast performance",
-                "Secure & scalable code",
-                "Easy future upgrades",
-              ],
-            },
-            {
-              title: "SEO Optimisation",
-              desc:
-                "Get discovered by customers actively searching for your services on Google.",
-              points: [
-                "Technical SEO setup",
-                "On-page optimisation",
-                "Performance optimisation",
-                "Search visibility strategy",
-              ],
-            },
-            {
-              title: "Brand Consulting",
-              desc:
-                "Clear messaging and consistent branding that builds trust and recognition.",
-              points: [
-                "Brand positioning",
-                "Tone & messaging",
-                "Visual consistency",
-                "Digital brand strategy",
-              ],
-            },
+  {
+    title: "Web Development",
+    desc:
+      "High-performance websites engineered to convert visitors and scale with your business.",
+    points: [
+      "Next.js & modern frameworks",
+      "Fast load speeds & optimisation",
+      "Secure, scalable architecture",
+      "Future-ready development",
+    ],
+  },
+  {
+    title: "App Development",
+    desc:
+      "Custom web and mobile applications built for usability, performance, and growth.",
+    points: [
+      "Custom app solutions",
+      "Web & mobile apps",
+      "Performance-driven builds",
+      "Scalable architecture",
+    ],
+  },
+  {
+    title: "SEO Optimisation",
+    desc:
+      "Increase visibility, rankings, and traffic from customers actively searching online.",
+    points: [
+      "Technical & on-page SEO",
+      "Search intent optimisation",
+      "Performance & speed SEO",
+      "Long-term ranking strategy",
+    ],
+  },
+  {
+    title: "AI Call Services",
+    desc:
+      "AI-powered call handling to capture leads, answer enquiries, and never miss a customer.",
+    points: [
+      "24/7 AI call handling",
+      "Lead capture & qualification",
+      "Automated customer responses",
+      "Business call automation",
+    ],
+  },
           ].map((service, i) => (
             <motion.div
               key={service.title}
