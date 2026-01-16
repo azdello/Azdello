@@ -113,7 +113,7 @@ export default function WebDevelopmentPage() {
   <div className="space-y-6 text-gray-400 text-sm">
     <p>
       <strong>How much does web development cost in Melbourne?</strong><br />
-      Web development projects in Melbourne typically range from $1,500 to
+      Web development projects in Melbourne typically range from $600 to
       $8,000 depending on features, design complexity, and business goals.
     </p>
 
