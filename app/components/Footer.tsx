@@ -12,12 +12,36 @@ export default function Footer() {
           <h3 className="text-white font-semibold text-lg mb-3">
             Azdello
           </h3>
+
+          {/* EXISTING DESCRIPTION */}
           <p className="text-sm leading-relaxed max-w-md">
             Azdello provides premium web design and development services,
             focused on performance, clarity, and results.
           </p>
 
-          <p className="text-sm mt-4">
+          {/* ✅ ADDED: BUSINESS CATEGORY + LOCATION */}
+          <p className="text-sm mt-3">
+            Website Designer in Cairnlea, Victoria
+          </p>
+
+          {/* ✅ ADDED: ADDRESS (GBP MATCH) */}
+          <p className="text-sm mt-2">
+            Address: Nobel Banks Dr, Cairnlea VIC 3023
+          </p>
+
+          {/* ✅ ADDED: PHONE (CLICKABLE) */}
+          <p className="text-sm mt-2">
+            Phone:{" "}
+            <a
+              href="tel:0410857854"
+              className="text-white hover:underline"
+            >
+              0410 857 854
+            </a>
+          </p>
+
+          {/* EXISTING EMAIL */}
+          <p className="text-sm mt-2">
             Email:{" "}
             <a
               href="mailto:azdelloservices@gmail.com"

@@ -34,12 +34,14 @@ export const metadata: Metadata = {
     locale: "en_AU",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Azdello | Web Design & SEO",
     description: "High-performance websites for growing businesses.",
     images: ["/og-image.png"],
   },
+
   robots: {
     index: true,
     follow: true,
@@ -53,6 +55,35 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Local Business Schema for Google SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Azdello",
+              url: "https://azdello.com",
+              logo: "https://azdello.com/favicon-2026.png",
+              telephone: "+61410857854",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Nobel Banks Dr",
+                addressLocality: "Cairnlea",
+                addressRegion: "VIC",
+                postalCode: "3023",
+                addressCountry: "AU",
+              },
+              areaServed: {
+                "@type": "AdministrativeArea",
+                name: "Melbourne",
+              },
+            }),
+          }}
+        />
+      </head>
+
       <body className="bg-black text-white antialiased">
         <Navbar />
         <main className="pt-24">{children}</main>

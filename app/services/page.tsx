@@ -7,6 +7,11 @@ const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 },
 };
+export const metadata = {
+  title: "Web Development & SEO Services Melbourne",
+  description:
+    "High-performance web development services in Melbourne. Fast, secure, and conversion-focused websites."
+};
 
 export default function ServicesPage() {
   return (
