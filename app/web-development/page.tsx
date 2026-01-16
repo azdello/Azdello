@@ -73,6 +73,105 @@ export default function WebDevelopmentPage() {
           Start Your Project
         </Link>
       </section>
+{/* Local SEO Map */}
+<section className="mt-32 max-w-5xl mx-auto">
+  <h2 className="text-2xl font-semibold mb-4">
+    Web Development Services in Melbourne
+  </h2>
+
+  <iframe
+    src="https://www.google.com/maps?q=Melbourne+VIC&output=embed"
+    width="100%"
+    height="300"
+    loading="lazy"
+    className="rounded-2xl border border-neutral-800"
+  />
+
+  <p className="text-gray-400 text-sm mt-4 max-w-3xl">
+    Azdello provides professional web development services across Melbourne,
+    helping local businesses grow with fast, secure, and scalable websites.
+  </p>
+</section>
+{/* Suburb Coverage */}
+<section className="mt-20 max-w-5xl mx-auto">
+  <h3 className="text-xl font-semibold mb-3">
+    Serving Businesses Across Melbourne Suburbs
+  </h3>
+
+  <p className="text-gray-400 text-sm max-w-3xl">
+    We work with businesses across Southbank, Docklands, Richmond, Carlton,
+    St Kilda, Brunswick, Footscray, and surrounding Melbourne suburbs.
+  </p>
+</section>
+
+    {/* FAQ Section */}
+<section className="mt-32 max-w-4xl mx-auto">
+  <h2 className="text-2xl font-semibold mb-6">
+    Web Development FAQs
+  </h2>
+
+  <div className="space-y-6 text-gray-400 text-sm">
+    <p>
+      <strong>How much does web development cost in Melbourne?</strong><br />
+      Web development projects in Melbourne typically range from $1,500 to
+      $8,000 depending on features, design complexity, and business goals.
+    </p>
+
+    <p>
+      <strong>How long does it take to build a website?</strong><br />
+      Most business websites are completed within 2–4 weeks, depending on
+      requirements and feedback cycles.
+    </p>
+
+    <p>
+      <strong>Do you build SEO-friendly websites?</strong><br />
+      Yes. All Azdello websites are built with SEO best practices, fast loading
+      times, and clean code structures.
+    </p>
+
+    <p>
+      <strong>Do you offer ongoing support?</strong><br />
+      Yes. We provide optional maintenance, updates, and performance
+      optimisation after launch.
+    </p>
+  </div>
+</section>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does web development cost in Melbourne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Web development projects in Melbourne typically range from $1,500 to $8,000 depending on scope and features."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to build a website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most business websites are completed within 2–4 weeks depending on requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build SEO-friendly websites?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, all Azdello websites are built with SEO best practices and performance optimisation."
+          }
+        }
+      ]
+    })
+  }}
+/>
+
     </main>
   );
 }
