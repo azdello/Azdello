@@ -31,13 +31,6 @@ const popHighlight: Variants = {
     },
   },
 };
-export const metadata = {
-  title: "Web Development Melbourne | Azdello",
-  description:
-    "High-performance web development services in Melbourne. Fast, secure, and conversion-focused websites."
-};
-
-
 
 
 /* ---------- PAGE ---------- */
